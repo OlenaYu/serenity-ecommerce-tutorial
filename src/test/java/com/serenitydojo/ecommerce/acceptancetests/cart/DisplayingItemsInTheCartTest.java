@@ -2,14 +2,10 @@ package com.serenitydojo.ecommerce.acceptancetests.cart;
 
 import com.serenitydojo.ecommerce.actions.CartActions;
 import com.serenitydojo.ecommerce.actions.NavigationActions;
-import com.serenitydojo.ecommerce.actions.ProductDetailsActions;
 import com.serenitydojo.ecommerce.actions.ProductItemActions;
-import com.serenitydojo.ecommerce.pageobjects.ProductItemPanel;
-import com.serenitydojo.ecommerce.pageobjects.ShoppingCartComponent;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,16 +13,14 @@ import static org.assertj.core.api.Assertions.*;
 public class DisplayingItemsInTheCartTest extends UIInteractionSteps {
 
     @AfterEach
-    public void tearDown()
-    {
+    public void tearDown() {
         getDriver().quit();
     }
-
-   @Steps
+    @Steps
     NavigationActions navigate;
-   @Steps
+    @Steps
     CartActions cart;
-   @Steps
+    @Steps
     ProductItemActions productItem;
 
     @Test
@@ -35,6 +29,7 @@ public class DisplayingItemsInTheCartTest extends UIInteractionSteps {
         cart.showCartSummary();
         waitForTextToAppear("You have no items in your shopping cart.");
     }
+
     @Test
     void shouldBeAbleToAddASingleItemToTheCart() {
         navigate.openTheApplication();
@@ -51,6 +46,6 @@ public class DisplayingItemsInTheCartTest extends UIInteractionSteps {
         navigate.openTheApplication();
         productItem.addItemToCart("Hero Hoodie", "XL", "Green");
 
-        assertThat(cart.itemsInTheCart()).containsExactlyInAnyOrder("Argus All-Weather Tank","Hero Hoodie" );
+        assertThat(cart.itemsInTheCart()).containsExactlyInAnyOrder("Argus All-Weather Tank", "Hero Hoodie");
     }
 }
